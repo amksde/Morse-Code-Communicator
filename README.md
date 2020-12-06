@@ -4,6 +4,7 @@ An Arduino device with it's code for morse-code &lt;-> English translation
 There are 2 options:
 1. Morse Code to Text
 2. Text to Morse Code
+
 The user will have to press the option number through serial input to choose any particular option.
 
 ## Option 1
