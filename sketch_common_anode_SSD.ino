@@ -39,7 +39,14 @@ void loop()
 }
 void main_func()
 {
-  
+  digitalWrite(2,LOW);
+  digitalWrite(3,LOW);
+  digitalWrite(4,LOW);
+  digitalWrite(5,LOW);
+  digitalWrite(6,LOW);
+  digitalWrite(7,LOW);
+  digitalWrite(8,LOW);
+  digitalWrite(9,LOW);
   int option = 0; //for input of option
   Serial.begin(9600);
   Serial.println("Please choose option\n1. Morse to Text\n2. Text to Morse");
