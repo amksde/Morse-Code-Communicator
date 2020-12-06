@@ -17,3 +17,9 @@ This can be done indefinitely until the break button is pressed twice. This will
 
 ## Option 2
 The user will enter a text string (without spaces) through serial input. The LEDs which corresponded to the INPUT buttons will now act as the output source for the morse code (dot LED, dash LED, and a break LED).
+
+
+## Circuit Design For Commone Anode Implementation
+### NOTE: FOR COMMON CATHODE, SIMPLY CONNECT RESISTORS TO POSITIVE TERMINALS INSTEAD OF NEGATIVE ONES
+
+![Circuit Diagram](Images/CKT.png)
