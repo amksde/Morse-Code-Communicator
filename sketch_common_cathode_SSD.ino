@@ -39,6 +39,14 @@ void loop()
 }
 void main_func()
 {
+  digitalWrite(2,HIGH);
+  digitalWrite(3,HIGH);
+  digitalWrite(4,HIGH);
+  digitalWrite(5,HIGH);
+  digitalWrite(6,HIGH);
+  digitalWrite(7,HIGH);
+  digitalWrite(8,HIGH);
+  digitalWrite(9,HIGH);
   
   int option = 0; //for input of option
   Serial.begin(9600);
