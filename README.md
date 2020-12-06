@@ -20,6 +20,6 @@ The user will enter a text string (without spaces) through serial input. The LED
 
 
 ## Circuit Design For Commone Anode Implementation
-### NOTE: FOR COMMON CATHODE, SIMPLY CONNECT RESISTORS TO POSITIVE TERMINALS INSTEAD OF NEGATIVE ONES
-
+#### NOTE: 
+For common cathode SSDs, simply put the resistor connection of SSDs in ACTIVE HIGH state instead of ACTIVE LOW, i.e. put them in the positive terminals on the bread board.
 ![Circuit Diagram](Images/CKT.png)
