@@ -39,37 +39,54 @@ void loop()
 }
 void main_func()
 {
-  digitalWrite(2,LOW);
-  digitalWrite(3,LOW);
-  digitalWrite(4,LOW);
-  digitalWrite(5,LOW);
-  digitalWrite(6,LOW);
-  digitalWrite(7,LOW);
-  digitalWrite(8,LOW);
-  digitalWrite(9,LOW);
+  digitalWrite(2,HIGH);
+  digitalWrite(3,HIGH);
+  digitalWrite(4,HIGH);
+  digitalWrite(5,HIGH);
+  digitalWrite(6,HIGH);
+  digitalWrite(7,HIGH);
+  digitalWrite(8,HIGH);
+  digitalWrite(9,HIGH);  
+    
   int option = 0; //for input of option
   Serial.begin(9600);
   Serial.println("Please choose option\n1. Morse to Text\n2. Text to Morse");
-  while(1){
-  if(Serial.available())
+  while(1)
   {
-     String input = Serial.readStringUntil('\n'); 
-     option= input.toInt();
-    break;
+    if(Serial.available())
+    {
+       String input = Serial.readStringUntil('\n'); 
+       option= input.toInt();
+       break;
+    }
+    Serial.flush();
   }
-  Serial.flush();
-  }
+  
  if(option==1)
  {
     //converts morse code to text
-  while(1){
-    morse_to_text();
-  }
+    while(1)
+    {
+      if(morse_to_text()==1)
+        
+        return;
+    }
  }
  else if(option==2)
  {
-    String inp = Serial.readStringUntil('\n');
-    text_to_morse(inp);
+    String inp = "";
+    Serial.println("Enter String");
+    Serial.flush();
+   while(1){
+     if(Serial.available())
+    {
+      inp = Serial.readStringUntil('\n');
+      break;
+    }
+    Serial.flush();
+    }
+   Serial.println(inp);
+   text_to_morse(inp);
  }
  else
  {
@@ -77,42 +94,43 @@ void main_func()
  }
 }
 
-void digitalToggle(int pin){
-  digitalWrite(pin, !digitalRead(pin));
-}
 void text_to_morse(String input)
 {
-  digitalToggle(10);//for loop break & space between chas
-  digitalToggle(11);//for "."
-  digitalToggle(12);//for "-"
+  pinMode(10,OUTPUT);//for loop break & space between chas
+  pinMode(11,OUTPUT); //for "."
+  pinMode(12,OUTPUT);//for "-"
   int len = input.length();
   for(int i = 0; i<len; i++)
   {
     display_morse(input[i]);
   }
-  digitalToggle(10);//for loop break & space between chas
-  digitalToggle(11);//for "."
-  digitalToggle(12);//for "-"
+  pinMode(10,INPUT);//for loop break & space between chas
+  pinMode(11,INPUT);//for "."
+  pinMode(12,INPUT);//for "-"
 }
 
 void display_morse(char c)
 {
+    digitalWrite(10, LOW);
+    digitalWrite(11, LOW);
+    digitalWrite(12, LOW);
+    delay(500);
     String morse = letters[c-'A'];
     int len = morse.length();
     for(int i = 0; i<len; i++)
     {
       if(morse[i]=='.')
       {
-        digitalWrite(11, HIGH);
+        digitalWrite(12, HIGH);
         delay(500);
-        digitalWrite(11, LOW);
+        digitalWrite(12, LOW);
         delay(500);
       }
       else
       {
-        digitalWrite(12, HIGH);
+        digitalWrite(11, HIGH);
         delay(500);
-        digitalWrite(12, LOW);
+        digitalWrite(11, LOW);
         delay(500);
         
       }
@@ -122,6 +140,10 @@ void display_morse(char c)
      delay(500);
      digitalWrite(10, LOW);
      delay(500);
+  
+     digitalWrite(10, LOW);
+     digitalWrite(11, LOW);
+     digitalWrite(12, LOW);
 }
 
 
@@ -142,13 +164,14 @@ int convertIntoText(String characterCode)
 }
 
 
-void morse_to_text()
+int morse_to_text()
 {
   int breakButtonState = 0;
   int dotButtonState = 0;
   int dashButtonState = 0;
   int generated=0;
   String morseCode = "";
+  
  digitalWrite(2,HIGH);
  delay(50);
   
@@ -158,7 +181,11 @@ void morse_to_text()
     dashButtonState = digitalRead(dashButton);
     breakButtonState = digitalRead(breakButton);
     
-    
+    if(morseCode.length()==0&&breakButtonState == HIGH){
+       digitalWrite(2,LOW);
+     delay(50);
+      return 1;
+    }
     if(dashButtonState == HIGH)
     {
       morseCode.concat("-"); // Storing code in variable morseCode with the help of concatenation function
@@ -177,8 +204,9 @@ void morse_to_text()
   generated = convertIntoText(morseCode);
   displaySSD(generated);
   
- digitalWrite(2,LOW);
+ digitalWrite(2,HIGH);
  delay(50);
+  return 0;
 }
 
 void displaySSD(int n){
@@ -288,7 +316,7 @@ void displaySSD(int n){
   }
   else if(n==14){     //O
     digitalWrite(9,HIGH);
-    digitalWrite(6,HIGH);
+    digitalWrite(8,HIGH);
     digitalWrite(5,HIGH);
   digitalWrite(3,HIGH);
     digitalWrite(7,HIGH);
@@ -312,7 +340,7 @@ void displaySSD(int n){
     digitalWrite(9,HIGH);
     digitalWrite(6,HIGH);
     digitalWrite(5,HIGH);
-  digitalWrite(3,HIGH);
+    digitalWrite(4,HIGH);
     digitalWrite(7,HIGH);
     digitalWrite(8,HIGH);
   }
