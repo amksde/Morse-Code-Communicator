@@ -19,9 +19,10 @@ This can be done indefinitely until the break button is pressed twice. This will
 ## Option 2
 The user will enter a text string (without spaces) through serial input. The LEDs which corresponded to the INPUT buttons will now act as the output source for the morse code (dot LED, dash LED, and a break LED).
 
+## Ciruit Design
 
-## Circuit Design For Common Anode SSD Implementation
+### Circuit Design For Common Anode SSD Implementation
 <img src="Images/CKT.png" width="1100" alt ="CA SSD Circuit">
 
-## Circuit Design For Common Cathode SSD Implementation
+### Circuit Design For Common Cathode SSD Implementation
 <img src="Images/CKTCC.png" width="1100" alt = "CC SSD Circuit">
