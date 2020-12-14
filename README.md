@@ -21,8 +21,8 @@ The user will enter a text string (without spaces) through serial input. The LED
 
 ## Ciruit Design
 
-### Circuit Design For Common Anode SSD Implementation
+### Circuit Design For Common Cathode SSD Implementation
 <img src="Images/CKT.png" width="900" alt ="CA SSD Circuit">
 
-### Circuit Design For Common Cathode SSD Implementation
+### Circuit Design For Common Anode SSD Implementation
 <img src="Images/CKTCC.png" width="900" alt = "CC SSD Circuit">
