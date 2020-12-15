@@ -115,6 +115,21 @@ void display_morse(char c)
     digitalWrite(11, LOW);
     digitalWrite(12, LOW);
     delay(500);
+    if(c==' ')
+    {
+      digitalWrite(10, HIGH);
+     delay(500);
+     digitalWrite(10, LOW);
+     delay(500);
+  
+     digitalWrite(10, LOW);
+     digitalWrite(11, LOW);
+     digitalWrite(12, LOW);
+      
+      return;
+    }
+
+  
     String morse = letters[c-'A'];
     int len = morse.length();
     for(int i = 0; i<len; i++)
